@@ -12,8 +12,8 @@ vnoremap <tab> zf
 " 自动保存折叠
 augroup _saveview autocmd!
 autocmd!
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
+autocmd BufWinLeave FileType c,lua,javascript,css,solidtiy,python :mkview<cr>
+autocmd bufwinenter FileType c,lua,javascript,css,solidtiy,python :silent loadview<cr> 
 augroup end
 
 ]]
