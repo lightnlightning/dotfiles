@@ -13,7 +13,7 @@ require('config.keymaps')
 require('config.nvim-cmp')
 -- require('config.nvim-lspconfig')
 require('config.lsp')
--- require('config.toggleterm')
+require('config.autocmd')
 
 local pkg = require('config.test')
 pkg.info()
