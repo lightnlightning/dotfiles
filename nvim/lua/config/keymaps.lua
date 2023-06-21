@@ -23,7 +23,7 @@ vim.keymap.set('n', '<', ':vertical resize -2<CR>', opts)
 vim.keymap.set('n', '>', ':vertical resize +2<CR>', opts)
 
 -- exit
-vim.keymap.set('n', '<c-q>', ':q<CR>', opts)
+vim.keymap.set('n', '<c-q>', ':buffer # | bd #<CR>', opts)
 -- save
 vim.keymap.set('n', '<c-s>', ':w<CR>', opts)
 -- 切换窗口
@@ -31,7 +31,7 @@ vim.keymap.set('n', '<c-x>', '<c-w>x', opts)
 -- buffers
 vim.keymap.set('n', 'H', ':bp<cr>', opts)
 vim.keymap.set('n', 'L', ':bn<cr>', opts)
-vim.keymap.set('n', 'X', ':bd<cr>', opts)
+vim.keymap.set('n', '<c-w>', ':buffer #<cr>', opts)
 
 -----------------
 -- Visual mode --
