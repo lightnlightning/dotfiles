@@ -5,15 +5,23 @@ local opts = {
 }
 
 
------------------
+-----------------:<C-U>TmuxNavigateRight<cr>
 -- Normal mode --
 -----------------
 -- Hint: see `:h vim.map.set()`
 -- Better window navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
-vim.keymap.set('n', '<C-j>', '<C-w>j', opts)
-vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
-vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
+vim.keymap.set('n', '<C-h>', ':<C-U>TmuxNavigateLeft<cr>', opts)
+vim.keymap.set('n', '<C-j>', ':<C-U>TmuxNavigateDown<cr>', opts)
+vim.keymap.set('n', '<C-k>', ':<C-U>TmuxNavigateUp<cr>', opts)
+vim.keymap.set('n', '<C-l>', ':<C-U>TmuxNavigateRight<cr>', opts)
+vim.keymap.set('n', '<C-w>', ':<C-U>TmuxNavigatePrevious<cr>', opts)
+-- let g:tmux_navigator_no_mappings = 1
+--
+-- noremap <silent> {Left-Mapping} :<C-U>TmuxNavigateLeft<cr>
+-- noremap <silent> {Down-Mapping} :<C-U>TmuxNavigateDown<cr>
+-- noremap <silent> {Up-Mapping} :<C-U>TmuxNavigateUp<cr>
+-- noremap <silent> {Right-Mapping} :<C-U>TmuxNavigateRight<cr>
+-- noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
 
 -- Resize with arrows
 -- delta: 2 lines
