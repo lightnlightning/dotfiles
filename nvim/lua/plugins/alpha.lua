@@ -21,7 +21,6 @@ return {
             dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
             dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
             dashboard.button("s", " " .. " Restore Session", ":SessionManager load_last_session<cr>"),
-            -- dashboard.button("s", " " .. " Restore Session", ":SessionManager load_last_session<cr>:NeoTreeReveal<cr>"),
             dashboard.button("l", "󰒲 " .. " lazy", ":lazy<cr>"),
             dashboard.button("q", " " .. " quit", ":qa<cr>"),
         }
