@@ -49,6 +49,20 @@ vim.keymap.set('n', '<c-w>', ':buffer #<cr>', opts)
 vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
 
+-- 按p不会把删除的加到剪贴板
+local function map(mode, lhs, rhs, opts)
+    local keys = require("lazy.core.handler").handlers.keys
+    ---@cast keys LazyKeysHandler
+    -- do not create the keymap if a lazy keys handler exists
+    if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+        opts = opts or {}
+        opts.silent = opts.silent ~= false
+        vim.keymap.set(mode, lhs, rhs, opts)
+    end
+end
+-- Paste over currently selected text without yanking it
+map("v", "p", '"_dP', { silent = true })
+
 --格式化
 vim.keymap.set('n', '<leader>=', 'mwggvG=`w', opts)
 -----------------
