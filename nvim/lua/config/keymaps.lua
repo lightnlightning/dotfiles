@@ -37,13 +37,15 @@ vim.keymap.set('n', '<c-s>', ':w<CR>', opts)
 -- 切换窗口
 vim.keymap.set('n', '<c-x>', '<c-w>x', opts)
 -- buffers
-vim.keymap.set('n', 'H', ':bp<cr>', opts)
-vim.keymap.set('n', 'L', ':bn<cr>', opts)
+vim.keymap.set('n', '<leader>h', ':bp<cr>', opts)
+vim.keymap.set('n', '<leader>l', ':bn<cr>', opts)
 vim.keymap.set('n', '<c-w>', ':buffer #<cr>', opts)
 
------------------
--- Visual mode --
------------------
+
+vim.keymap.set('v','u','<esc>',opts)
+vim.keymap.set('n','q','<esc>',opts)
+vim.keymap.set({'n','v','o'}, 'H', '^', opts)
+vim.keymap.set({'n','v','o'}, 'L', '%', opts)
 
 -- Hint: start visual mode with the same area as the previous area and the same mode
 vim.keymap.set('v', '<', '<gv', opts)
