@@ -14,7 +14,7 @@ local on_attach = function(_, bufnr)
     keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>",opts)
     keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>",opts)
     keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>",opts)
-    keymap("n","<leader>o", "<cmd>Lspsaga outline<CR>",opts)
+    -- keymap("n","<leader>o", "<cmd>Lspsaga outline<CR>",opts)
     keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>",opts)
     keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>",opts)
     keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>",opts)
@@ -30,6 +30,7 @@ local servers = { 'lua_ls', 'pyright', 'tsserver','cssls','emmet_ls','clangd','g
     'solang',
     -- 'solc',
     'solidity',
+    -- 'solc'
 }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
