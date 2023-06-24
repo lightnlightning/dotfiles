@@ -2,7 +2,7 @@ vim.cmd [[
 
 augroup _format autocmd!
 autocmd!
-autocmd BufWritePre * normal! magg=G`a
+autocmd BufWritePre * normal! magg=G`azz
 augroup end
 
 "代码折叠映射
@@ -12,8 +12,8 @@ vnoremap <tab> zf
 " 自动保存折叠
 augroup _saveview autocmd!
 autocmd!
-autocmd BufWinLeave FileType c,lua,javascript,css,solidtiy,python :mkview<cr>
-autocmd bufwinenter FileType c,lua,javascript,css,solidtiy,python :silent loadview<cr> 
+autocmd BufWinLeave FileType c,lua,javascript,css,solidtiy,python,html :mkview<cr>
+autocmd bufwinenter FileType c,lua,javascript,css,solidtiy,python,html :silent loadview<cr> 
 augroup end
 
 "从启动画面进来自动打开树
