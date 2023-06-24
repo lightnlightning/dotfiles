@@ -7,12 +7,12 @@ return {
     'hrsh7th/nvim-cmp',
 
     --For vsnip users.,-- 代码片段
-    'hrsh7th/cmp-vsnip',  
+    'hrsh7th/cmp-vsnip',
     'hrsh7th/vim-vsnip',
 
-    -- --For luasnip users.,
-    -- 'L3MON4D3/LuaSnip',
-    -- 'saadparwaiz1/cmp_luasnip',
+    --For luasnip users.,
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
     --
     -- --For ultisnips users.,
     -- 'SirVer/ultisnips',
