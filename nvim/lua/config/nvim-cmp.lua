@@ -101,6 +101,7 @@ snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
 imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 ]]
+require("luasnip.loaders.from_vscode").lazy_load()
 -- Set up lspconfig.
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
