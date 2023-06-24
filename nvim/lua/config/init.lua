@@ -16,6 +16,7 @@ require('config.nvim-cmp')
 -- require('config.lspsaga')
 require('config.autocmd')
 require('config.lspsaga_keymap_lsp')
+require('config.toggleterm')
 
 local pkg = require('config.test')
 pkg.info()
