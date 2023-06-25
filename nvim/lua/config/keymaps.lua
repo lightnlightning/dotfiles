@@ -31,7 +31,7 @@ vim.keymap.set('n', '<', ':vertical resize -2<CR>', opts)
 vim.keymap.set('n', '>', ':vertical resize +2<CR>', opts)
 
 -- exit
-vim.keymap.set('n', 'q', ':buffer # | bd #<CR>', opts)
+vim.keymap.set('n', 'q', ':BufferLineCyclePrev<CR>:bd #<CR>', opts)
 -- save
 vim.keymap.set('n', '<c-s>', ':w<CR>', opts)
 -- 切换窗口
