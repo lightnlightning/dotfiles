@@ -5,7 +5,7 @@
 -- end
 -- return M
 
--- local pkg = require('initf')        
+-- local pkg = require('initf')
 -- pkg.info()
 -- return {}
 require('config.options')
@@ -20,4 +20,3 @@ require('config.toggleterm')
 
 local pkg = require('config.test')
 pkg.info()
-
