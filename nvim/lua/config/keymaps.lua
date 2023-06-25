@@ -52,9 +52,10 @@ vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
 
 -- 按p不会把删除的加到剪贴板
+---@diagnostic disable-next-line: redefined-local
 local function map(mode, lhs, rhs, opts)
     local keys = require("lazy.core.handler").handlers.keys
-    ---@cast keys LazyKeysHandler
+    --@cast keys LazyKeysHandler
     -- do not create the keymap if a lazy keys handler exists
     if not keys.active[keys.parse({ lhs, mode = mode }).id] then
         opts = opts or {}
