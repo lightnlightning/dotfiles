@@ -2,11 +2,11 @@ vim.cmd [[
 
 augroup _format
 autocmd!
-autocmd BufWritePre * normal! magg=G`azz
+autocmd BufWritePre * lua vim.lsp.buf.format()
 augroup end
 
 "代码折叠映射
-nnoremap <tab> za 
+nnoremap <tab> za
 vnoremap <tab> zf
 
 " 自动保存折叠
@@ -14,9 +14,9 @@ vnoremap <tab> zf
 " augroup _saveview
 " autocmd!
 " autocmd BufWinLeave *.c, *.lua, *.sol mkview
-" autocmd BufWinEnter *.c, *.lua, *.sol loadview 
+" autocmd BufWinEnter *.c, *.lua, *.sol loadview
 " " autocmd BufWinLeave,FileType c,lua,javascript,css,solidtiy,python,html silent mkview
-" " autocmd BufWinEnter,FileType c,lua,javascript,css,solidtiy,python,html silent loadview 
+" " autocmd BufWinEnter,FileType c,lua,javascript,css,solidtiy,python,html silent loadview
 " augroup end
 
 "从启动画面进来自动打开树
