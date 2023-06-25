@@ -1,6 +1,6 @@
 vim.cmd [[
 
-augroup _format autocmd!
+augroup _format
 autocmd!
 autocmd BufWritePre * normal! magg=G`azz
 augroup end
@@ -10,11 +10,14 @@ nnoremap <tab> za
 vnoremap <tab> zf
 
 " 自动保存折叠
-augroup _saveview autocmd!
-autocmd!
-autocmd BufWinLeave FileType c,lua,javascript,css,solidtiy,python,html :mkview<cr>
-autocmd bufwinenter FileType c,lua,javascript,css,solidtiy,python,html :silent loadview<cr> 
-augroup end
+
+" augroup _saveview
+" autocmd!
+" autocmd BufWinLeave *.c, *.lua, *.sol mkview
+" autocmd BufWinEnter *.c, *.lua, *.sol loadview 
+" " autocmd BufWinLeave,FileType c,lua,javascript,css,solidtiy,python,html silent mkview
+" " autocmd BufWinEnter,FileType c,lua,javascript,css,solidtiy,python,html silent loadview 
+" augroup end
 
 "从启动画面进来自动打开树
 augroup _open_nvim_tree
