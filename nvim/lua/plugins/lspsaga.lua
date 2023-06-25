@@ -1,15 +1,28 @@
-return{
+return {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     config = function()
         require("lspsaga").setup({
-            preview = {
-                lines_above = 0,
-                lines_below = 10,
+            symbol_in_winbar = {
+                enable = false,
+                separator = " ",
+                ignore_patterns = {},
+                hide_keyword = true,
+                show_file = true,
+                folder_level = 2,
+                respect_root = false,
+                color_mode = true,
             },
-            scroll_preview = {
-                scroll_down = "<C-f>",
-                scroll_up = "<C-b>",
+            beacon = {
+                enable = false,
+                frequency = 7,
+            },
+            lightbulb = {
+                enable = false, -- 关掉灯泡💡
+                enable_in_insert = true,
+                sign = true,
+                sign_priority = 40,
+                virtual_text = true,
             },
             request_timeout = 3500,
 
@@ -42,10 +55,11 @@ return{
                     quit = { "q", "<ESC>" },
                 },
             },
-        })    end,
+        })
+    end,
     dependencies = {
-        {"nvim-tree/nvim-web-devicons"},
+        { "nvim-tree/nvim-web-devicons" },
         --Please make sure you install markdown and markdown_inline parser
-        {"nvim-treesitter/nvim-treesitter"}
+        { "nvim-treesitter/nvim-treesitter" }
     }
 }
