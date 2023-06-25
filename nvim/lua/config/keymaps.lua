@@ -1,7 +1,7 @@
 -- define common options
 local opts = {
-    noremap = true,      -- non-recursive
-    silent = true,       -- do not show message
+    noremap = true, -- non-recursive
+    silent = true,  -- do not show message
 }
 
 
@@ -31,7 +31,7 @@ vim.keymap.set('n', '<', ':vertical resize -2<CR>', opts)
 vim.keymap.set('n', '>', ':vertical resize +2<CR>', opts)
 
 -- exit
-vim.keymap.set('n', '<c-q>', ':buffer # | bd #<CR>', opts)
+vim.keymap.set('n', 'q', ':buffer # | bd #<CR>', opts)
 -- save
 vim.keymap.set('n', '<c-s>', ':w<CR>', opts)
 -- 切换窗口
@@ -42,10 +42,10 @@ vim.keymap.set('n', '<leader>l', ':bn<cr>', opts)
 vim.keymap.set('n', '<c-w>', ':buffer #<cr>', opts)
 
 
-vim.keymap.set('v','u','<esc>',opts)
-vim.keymap.set('n','q',':q<cr>',opts)
-vim.keymap.set({'n','v','o'}, 'H', '^', opts)
-vim.keymap.set({'n','v','o'}, 'L', '$', opts)
+vim.keymap.set('v', 'u', '<esc>', opts)
+vim.keymap.set('n', '<c-q>', ':q<cr>', opts)
+vim.keymap.set({ 'n', 'v', 'o' }, 'H', '^', opts)
+vim.keymap.set({ 'n', 'v', 'o' }, 'L', '$', opts)
 
 -- Hint: start visual mode with the same area as the previous area and the same mode
 vim.keymap.set('v', '<', '<gv', opts)
@@ -107,4 +107,3 @@ vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
 vim.keymap.set('n', '<leader>fc', builtin.commands, {})
 vim.keymap.set('n', '<leader>fm', builtin.marks, {})
 vim.keymap.set('n', '<leader>uc', builtin.colorscheme, {})
-
