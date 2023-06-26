@@ -51,6 +51,7 @@ local on_attach = function(_, bufnr)
     keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
     keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
     keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", opts)
+    keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
