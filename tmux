@@ -57,6 +57,39 @@ is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
             bind-key -T copy-mode-vi 'C-l' select-pane -R
             bind-key -T copy-mode-vi 'C-\' select-pane -l
 
+#window navigation
+# display
+set -g base-index 1
+setw -g pane-base-index 1
+
+unbind n
+unbind p
+unbind w
+unbind 1
+unbind 2
+unbind 3
+unbind 4
+unbind 5
+unbind 6
+unbind 7
+unbind 8
+unbind 9
+unbind 0
+bind -n M-h previous-window
+bind -n M-l next-window
+bind -n M-w last-window
+
+bind -n M-0 select-window -t 0
+bind -n M-1 select-window -t 1
+bind -n M-2 select-window -t 2
+bind -n M-3 select-window -t 3
+bind -n M-4 select-window -t 4
+bind -n M-5 select-window -t 5
+bind -n M-6 select-window -t 6
+bind -n M-7 select-window -t 7
+bind -n M-8 select-window -t 8
+bind -n M-9 select-window -t 9
+
 # 插件
 # # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
