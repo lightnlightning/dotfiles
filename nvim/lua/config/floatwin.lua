@@ -4,7 +4,7 @@ function M.trans_word()
     local f_buf = vim.api.nvim_create_buf(false, true)
     local mes = {}
     local word = M.get_word()
-    local m = vim.fn.system("trans -no-ansi -b " .. word)
+    local m = vim.fn.system("sdcv " .. word)
     for row in string.gmatch(m, "[^\n]+") do table.insert(mes, row) end -- 分割行并写入表
     vim.api.nvim_buf_set_lines(f_buf, 0, -1, true, mes)
     vim.api.nvim_open_win(f_buf, true,
