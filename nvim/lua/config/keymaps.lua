@@ -72,8 +72,8 @@ vim.keymap.set('n', '<leader>=', 'mwggvG=`w', opts)
 -- 插件 --
 -----------------
 -- 翻译
-local fl = require('config.floatwin')
-vim.keymap.set('n', '<c-f>', fl.trans, opts)
+-- local fl = require('config.floatwin')
+-- vim.keymap.set({ 'v', 'n' }, '<c-f>', fl.trans, opts)
 
 -- BufferLine
 vim.keymap.set('n', '<leader>bp', ':BufferLineTogglePin<CR>', opts)
