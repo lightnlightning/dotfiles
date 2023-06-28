@@ -55,7 +55,7 @@ end
 vim.cmd([[
 augroup input_method
 autocmd!
-autocmd InsertEnter * :lua Set_input_method()
-autocmd InsertLeave * :lua Switch_to_English_input_method()
+autocmd FocusLost * :lua Set_input_method()
+autocmd InsertLeave,FocusGained * :lua Switch_to_English_input_method()
 augroup END
 ]])
