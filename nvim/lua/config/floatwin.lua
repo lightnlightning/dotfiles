@@ -61,24 +61,12 @@ function M.floatwin(otps)
             style = 'minimal'
         })
     vim.api.nvim_win_set_option(win_id, "wrap", true)
-    -- vim.api.nvim_win_set_option(win_id, 'winhighlight',
-    --     'Normal:FloatBorder,FloatBorder:FloatBorder,NormalFloat:NormalFloat')
-    -- vim.api.nvim_win_set_option(win_id, 'FloatBorder', 'Normal:FloatBorder')
-    -- vim.api.nvim_win_set_option(win_id, 'FloatBorder', 'NvimFloatingWindow')
     local win_hl = vim.api.nvim_win_get_option(0, 'winhighlight')
     vim.api.nvim_win_set_option(win_id, 'winhighlight', win_hl)
     vim.api.nvim_buf_set_keymap(f_buf, 'n', 'q', ":close<CR>", opts)
 end
 
--- border = {
---   style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
--- },
--- vim.api.nvim_create_user_command("FloatwinOnlive", function() M.floatwin("onlive") end, {})
--- vim.api.nvim_create_user_command("Floatwin", function() M.floatwin(" ") end, {})
-
 function M.mappings()
-    -- vim.keymap.set({ 'n', 'v' }, 't', ':<c-u>Floatwin<CR>', opts)
-    -- vim.keymap.set({ 'n', 'v' }, 'T', ':<c-u>FloatwinOnlive<CR>', opts)
     vim.keymap.set({ 'n', 'v' }, 'tt', function() M.floatwin(" ") end, opts)
     vim.keymap.set({ 'n', 'v' }, 'to', function() M.floatwin("onlive") end, opts)
     vim.keymap.set({ 'n', 'v' }, 'tp', function() M.floatwin("sp") end, opts)
