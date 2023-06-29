@@ -16,68 +16,46 @@ local check_backspace = function()
     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
-local lspkind = require('lspkind')
-require('lspkind').init({
-    -- DEPRECATED (use mode instead): enables text annotations
-    --
-    -- default: true
-    -- with_text = true,
-
-    -- defines how annotations are shown
-    -- default: symbol
-    -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-    mode = 'symbol_text',
-
-    -- default symbol map
-    -- can be either 'default' (requires nerd-fonts font) or
-    -- 'codicons' for codicon preset (requires vscode-codicons font)
-    --
-    -- default: 'default'
-    preset = 'codicons',
-
-    -- override preset symbols
-    --
-    -- default: {}
-    symbol_map = {
-        Text = "󰉿",
-        Method = "󰆧",
-        Function = "󰊕",
-        Constructor = "",
-        Field = "󰜢",
-        Variable = "󰀫",
-        Class = "󰠱",
-        Interface = "",
-        Module = "",
-        Property = "󰜢",
-        Unit = "󰑭",
-        Value = "󰎠",
-        Enum = "",
-        Keyword = "󰌋",
-        Snippet = "",
-        Color = "󰏘",
-        File = "󰈙",
-        Reference = "󰈇",
-        Folder = "󰉋",
-        EnumMember = "",
-        Constant = "󰏿",
-        Struct = "󰙅",
-        Event = "",
-        Operator = "󰆕",
-        TypeParameter = "",
-    },
-})
 cmp.setup({
     formatting = {
-        fields = { 'menu', 'abbr', 'kind' },
+        fields = { 'abbr', 'kind', 'menu' },
         format = function(entry, item)
             local menu_icon = {
-                nvim_lsp = 'λ',
-                luasnip = '⋗',
-                buffer = 'Ω',
-                path = '🖫',
+                nvim_lsp = '[nvim_lsp]',
+                luasnip = '[luasnip]',
+                buffer = '[buffer]',
+                path = '[path]',
             }
-
             item.menu = menu_icon[entry.source.name]
+
+            local kind_icon = {
+                Text = "󰉿",
+                Method = "󰆧",
+                Function = "󰊕",
+                Constructor = "",
+                Field = " ",
+                Variable = "󰀫",
+                Class = "󰠱",
+                Interface = "",
+                Module = "",
+                Property = " ",
+                Unit = "󰑭",
+                Value = "󰎠",
+                Enum = "",
+                Keyword = "󰌋",
+                Snippet = " ",
+                Color = "󰏘",
+                File = "󰈙",
+                Reference = "󰈇",
+                Folder = "󰉋",
+                EnumMember = "",
+                Constant = "󰏿",
+                Struct = "󰙅",
+                Event = "",
+                Operator = "󰆕",
+                TypeParameter = "",
+            }
+            item.kind = kind_icon[item.kind] .. ' ' .. item.kind
             return item
         end,
     },
@@ -104,35 +82,33 @@ cmp.setup({
         ['<C-e>'] = cmp.mapping.abort(), -- 取消补全，esc也可以退出
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expandable() then
-                luasnip.expand()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif check_backspace() then
-                fallback()
-            else
-                fallback()
-            end
-        end, {
-            "i",
-            "s",
-        }),
+        ["<Tab>"] = cmp.mapping(
+            function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif luasnip.expandable() then
+                    luasnip.expand()
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif check_backspace() then
+                    fallback()
+                else
+                    fallback()
+                end
+            end,
+            { "i", "s", }),
 
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, {
-            "i",
-            "s",
-        }),
+        ["<S-Tab>"] = cmp.mapping(
+            function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end,
+            { "i", "s", }),
     }),
     sources = cmp.config.sources({
             { name = 'nvim_lsp' },
@@ -152,7 +128,48 @@ cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = 'buffer' }
-    }
+    },
+    formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        format = function(entry, item)
+            local menu_icon = {
+                buffer = '[buffer]',
+            }
+
+            item.menu = menu_icon[entry.source.name]
+            local kind_icon = {
+                Text = "󰉿",
+                Method = "󰆧",
+                Function = "󰊕",
+                Constructor = "",
+                Field = " ",
+                Variable = "󰀫",
+                Class = "󰠱",
+                Interface = "",
+                Module = "",
+                Property = " ",
+                Unit = "󰑭",
+                Value = "󰎠",
+                Enum = "",
+                Keyword = "󰌋",
+                Snippet = " ",
+                Color = "󰏘",
+                File = "󰈙",
+                Reference = "󰈇",
+                Folder = "󰉋",
+                EnumMember = "",
+                Constant = "󰏿",
+                Struct = "󰙅",
+                Event = "",
+                Operator = "󰆕",
+                TypeParameter = "",
+            }
+            item.kind = kind_icon[item.kind] .. ' ' .. item.kind
+
+            return item
+        end,
+    },
+
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -162,5 +179,46 @@ cmp.setup.cmdline(':', {
         { name = 'path' }
     }, {
         { name = 'cmdline' }
-    })
+    }),
+    formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        format = function(entry, item)
+            local menu_icon = {
+                path = '[path]',
+                cmdline = '[cmd]'
+            }
+
+            item.menu = menu_icon[entry.source.name]
+            local kind_icon = {
+                Text = "󰉿",
+                Method = "󰆧",
+                Function = "󰊕",
+                Constructor = "",
+                Field = " ",
+                Variable = "󰀫",
+                Class = "󰠱",
+                Interface = "",
+                Module = "",
+                Property = " ",
+                Unit = "󰑭",
+                Value = "󰎠",
+                Enum = "",
+                Keyword = "󰌋",
+                Snippet = " ",
+                Color = "󰏘",
+                File = "󰈙",
+                Reference = "󰈇",
+                Folder = "󰉋",
+                EnumMember = "",
+                Constant = "󰏿",
+                Struct = "󰙅",
+                Event = "",
+                Operator = "󰆕",
+                TypeParameter = "",
+            }
+            item.kind = kind_icon[item.kind] .. ' ' .. item.kind
+
+            return item
+        end,
+    },
 })
