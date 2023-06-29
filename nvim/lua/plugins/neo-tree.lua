@@ -5,81 +5,25 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
-        {
-            -- only needed if you want to use the commands with "_with_window_picker" suffix
-            's1n7ax/nvim-window-picker',
-            -- tag = "v1.*",
-            config = function()
-                require'window-picker'.setup({
-                    autoselect_one = true,
-                    include_current = true,
-                    filter_rules = {
-                        -- filter using buffer options
-                        bo = {
-                            -- if the file type is one of following, the window will be ignored
-                            filetype = { 'neo-tree', "neo-tree-popup", "notify" },
-
-                            -- if the buffer type is one of following, the window will be ignored
-                            buftype = { 'terminal', "quickfix" },
-                        },
-                    },
-                    other_win_hl_color = '#e35e4f',
-                })
-            end,
-        }
     },
     keys = {
-        { "<F3>", "<cmd>Neotree toggle<cr>", desc = "打开/关闭树" },
+        { "<F3>",      "<cmd>Neotree toggle<cr>", desc = "打开/关闭树" },
         -- { "<space>", "v", desc = "替换v键盘", remap = true },
-        { "<leader>e", "<cmd>NeoTreeReveal<cr>", desc = "打开/关闭树" },
+        { "<leader>e", "<cmd>NeoTreeReveal<cr>",  desc = "打开/关闭树" },
     },
-    -- deactivate = function()
-    --     vim.cmd([[neotree close]])
-    -- end,
-    -- init = function()
-    --     vim.g.neo_tree_remove_legacy_commands = 1
-    --     if vim.fn.argc() == 1 then
-    --         local stat = vim.loop.fs_stat(vim.fn.argv(0))
-    --         if stat and stat.type == "directory" then
-    --             require("neo-tree")
-    --         end
-    --     end
-    -- end,
-    -- opts = {
-    --     sources = { "filesystem", "buffers", "git_status", "document_symbols" },
-    --     open_files_do_not_replace_types = { "terminal", "trouble", "qf", "outline" },
-    --     filesystem = {
-    --         bind_to_cwd = false,
-    --         follow_current_file = true,
-    --         use_libuv_file_watcher = true,
-    --     },
-    --     window = {
-    --         mappings = {
-    --             ["<space>"] = "none",
-    --         },
-    --     },
-    --     default_component_configs = {
-    --         indent = {
-    --             with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-    --             expander_collapsed = "",
-    --             expander_expanded = "",
-    --             expander_highlight = "neotreeexpander",
-    --         },
-    --     },
-    -- },
-    config = function ()
+    config = function()
         -- unless you are still migrating, remove the deprecated commands from v1.x
         vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
         -- if you want icons for diagnostic errors, you'll need to define them somewhere:
         vim.fn.sign_define("diagnosticsignerror",
-            {text = " ", texthl = "diagnosticsignerror"})
+            { text = " ", texthl = "diagnosticsignerror" })
         vim.fn.sign_define("diagnosticsignwarn",
-            {text = " ", texthl = "diagnosticsignwarn"})
+            { text = " ", texthl = "diagnosticsignwarn" })
         vim.fn.sign_define("diagnosticsigninfo",
-            {text = " ", texthl = "diagnosticsigninfo"})
+            { text = " ", texthl = "diagnosticsigninfo" })
         vim.fn.sign_define("diagnosticsignhint",
-            {text = "", texthl = "diagnosticsignhint"})
+            { text = "", texthl = "diagnosticsignhint" })
         -- note: this is changed from v1.x, which used the old style of highlight groups
         -- in the form "lspdiagnosticssignwarning"
 
@@ -114,11 +58,11 @@ return {
 
             close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
             popup_border_style = "rounded",
-            enable_git_status = false, 
+            enable_git_status = false,
             enable_diagnostics = false,
             open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
-            sort_case_insensitive = false, -- used when sorting files and directories in the tree
-            sort_function = nil , -- use a custom function for sorting files and directories in the tree 
+            sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
+            sort_function = nil,                                               -- use a custom function for sorting files and directories in the tree
             -- sort_function = function (a,b)
             --       if a.type == b.type then
             --           return a.path > b.path
@@ -168,8 +112,8 @@ return {
                         -- Change type
                         added     = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
                         modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-                        deleted   = "✖",-- this can only be used in the git_status source
-                        renamed   = "󰁕",-- this can only be used in the git_status source
+                        deleted   = "✖", -- this can only be used in the git_status source
+                        renamed   = "󰁕", -- this can only be used in the git_status source
                         -- Status type
                         untracked = "",
                         ignored   = "",
@@ -191,9 +135,9 @@ return {
                     nowait = true,
                 },
                 mappings = {
-                    -- ["<space>"] = { 
-                    --     "toggle_node", 
-                    --     nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use 
+                    -- ["<space>"] = {
+                    --     "toggle_node",
+                    --     nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
                     -- },
                     ["<2-LeftMouse>"] = "open",
                     -- ["<cr>"] = "open",
@@ -268,9 +212,9 @@ return {
                         --".null-ls_*",
                     },
                 },
-                follow_current_file = false, -- This will find and focus the file in the active buffer every
+                follow_current_file = false,            -- This will find and focus the file in the active buffer every
                 -- time the current file is changed while the tree is open.
-                group_empty_dirs = false, -- when true, empty folders will be grouped together
+                group_empty_dirs = false,               -- when true, empty folders will be grouped together
                 hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
                 -- in whatever position is specified in window.position
                 -- "open_current",  -- netrw disabled, opening a directory opens within the
@@ -305,7 +249,7 @@ return {
             buffers = {
                 follow_current_file = true, -- This will find and focus the file in the active buffer every
                 -- time the current file is changed while the tree is open.
-                group_empty_dirs = true, -- when true, empty folders will be grouped together
+                group_empty_dirs = true,    -- when true, empty folders will be grouped together
                 show_unloaded = true,
                 window = {
                     mappings = {

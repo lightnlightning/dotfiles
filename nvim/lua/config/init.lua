@@ -18,6 +18,7 @@ require('config.autocmd')
 require('config.lspsaga_keymap_lsp')
 require('config.toggleterm')
 require('config.floatwin').mappings()
+require('config.colorscheme')
 
 local pkg = require('config.test')
 pkg.info()
