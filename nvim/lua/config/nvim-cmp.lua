@@ -33,7 +33,7 @@ cmp.setup({
                 Method = "󰆧",
                 Function = "󰊕",
                 Constructor = "",
-                Field = " ",
+                Field = "",
                 Variable = "󰀫",
                 Class = "󰠱",
                 Interface = "",
@@ -43,7 +43,7 @@ cmp.setup({
                 Value = "󰎠",
                 Enum = "",
                 Keyword = "󰌋",
-                Snippet = " ",
+                Snippet = "",
                 Color = "󰏘",
                 File = "󰈙",
                 Reference = "󰈇",
@@ -55,7 +55,8 @@ cmp.setup({
                 Operator = "󰆕",
                 TypeParameter = "",
             }
-            item.kind = kind_icon[item.kind] .. ' ' .. item.kind
+            item.kind = kind_icon[item.kind]
+            -- item.kind = kind_icon[item.kind] .. ' ' .. item.kind
             return item
         end,
     },
