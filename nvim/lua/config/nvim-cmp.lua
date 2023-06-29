@@ -1,4 +1,21 @@
-local cmp = require 'cmp'
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+    return
+end
+
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
+    return
+end
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+-- 下面会用到这个函数
+local check_backspace = function()
+    local col = vim.fn.col "." - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+end
+
 local lspkind = require('lspkind')
 require('lspkind').init({
     -- DEPRECATED (use mode instead): enables text annotations
@@ -51,30 +68,19 @@ require('lspkind').init({
 })
 cmp.setup({
     formatting = {
-        format = lspkind.cmp_format({
-            mode = 'symbol',       -- show only symbol annotations
-            maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+        fields = { 'menu', 'abbr', 'kind' },
+        format = function(entry, item)
+            local menu_icon = {
+                nvim_lsp = 'λ',
+                luasnip = '⋗',
+                buffer = 'Ω',
+                path = '🖫',
+            }
 
-            -- The function below will be called before any actual modifications from lspkind
-            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-            before = function(entry, vim_item)
-                -- fancy icons and a name of kind
-                -- set a name for each source
-                vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
-                -- vim_item.menu = ({
-                --     buffer   = "[BUF]",
-                --     path   = "[path]",
-                --     -- nvim_lsp = "[nvim_lsp]",
-                --     luasnip  = "[luasnip]",
-                --     -- vsnip  = "[vsnip]",
-                --     nvim_lua = "[Lua]"
-                -- })[entry.source.name]
-                return vim_item
-            end
-        })
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
     },
-
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -93,13 +99,40 @@ cmp.setup({
         native_menu = false,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-        ["<Tab>"] = cmp.mapping.select_next_item(),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<C-e>'] = cmp.mapping.abort(), -- 取消补全，esc也可以退出
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expandable() then
+                luasnip.expand()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            elseif check_backspace() then
+                fallback()
+            else
+                fallback()
+            end
+        end, {
+            "i",
+            "s",
+        }),
+
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, {
+            "i",
+            "s",
+        }),
     }),
     sources = cmp.config.sources({
             { name = 'nvim_lsp' },
@@ -112,15 +145,6 @@ cmp.setup({
             { name = 'buffer' },
             { name = 'path' },
         })
-})
-
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-        { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-    }, {
-        { name = 'buffer' },
-    })
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -140,25 +164,3 @@ cmp.setup.cmdline(':', {
         { name = 'cmdline' }
     })
 })
-vim.cmd [[
-
-" press <Tab> to expand or jump in a snippet. These can also be mapped separately
-" via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-" -1 for jumping backwards.
-inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
-
-snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-
-" For changing choices in choiceNodes (not strictly necessary for a basic setup).
-imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-]]
-require("luasnip.loaders.from_vscode").lazy_load()
--- Set up lspconfig.
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig').lua_ls.setup {
---     capabilities = capabilities
--- }
