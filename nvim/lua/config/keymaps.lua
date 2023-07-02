@@ -41,6 +41,29 @@ vim.keymap.set('n', '<leader>h', ':bp<cr>', opts)
 vim.keymap.set('n', '<leader>l', ':bn<cr>', opts)
 vim.keymap.set('n', '<c-w>', ':buffer #<cr>', opts)
 
+vim.cmd([[
+set nohlsearch
+nnoremap <silent> <esc> :nohl<cr>
+noremap <silent> n :set hlsearch<cr>n
+noremap <silent> N :set hlsearch<cr>N
+noremap / :set hlsearch<cr>/
+noremap ? :set hlsearch<cr>?
+" noremap <silent> * *:set hlsearch<cr>
+noremap <silent> <leader>w *:set hlsearch<cr>
+
+nnoremap <expr><leader>r Sh()
+
+nnoremap <expr><leader>r Sh()
+
+function! Sh()
+    let wordUnderCursor =  expand("<cword>")
+    set hlsearch
+    " return ":%s/" .. wordUnderCursor .. "/"
+    return ":%s/" .. wordUnderCursor
+
+endfunc
+]])
+
 
 vim.keymap.set('v', 'u', '<esc>', opts)
 vim.keymap.set('n', '<c-q>', ':q<cr>', opts)
