@@ -72,6 +72,7 @@ function M.floatwin(otps)
     local win_hl = vim.api.nvim_win_get_option(0, 'winhighlight')
     vim.api.nvim_win_set_option(win_id, 'winhighlight', win_hl)
     vim.api.nvim_buf_set_keymap(f_buf, 'n', 'q', ":close<CR>", opts)
+    vim.api.nvim_buf_set_keymap(f_buf, 'n', '<esc>', ":close<CR>", opts)
 end
 
 function M.mappings()
