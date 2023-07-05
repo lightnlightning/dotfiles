@@ -33,9 +33,17 @@ function M.trans()
     local words = '"' .. M.get_words() .. '"'
     local m = ""
     if M.opts.trans_opts == "onlive" then
-        m = vim.fn.system("trans -no-ansi -b " .. words)
+        if string.byte(words, 2) > 127 then
+            m = vim.fn.system("trans -no-ansi :en " .. words)
+        else
+            m = vim.fn.system("trans -no-ansi -b " .. words)
+        end
     elseif M.opts.trans_opts == "sp" then
-        m = vim.fn.system("trans -no-ansi -sp -b " .. words)
+        if string.byte(words, 2) > 127 then
+            m = vim.fn.system("trans -no-ansi -sp -d :en " .. words)
+        else
+            m = vim.fn.system("trans -no-ansi -sp -b " .. words)
+        end
     else
         m = vim.fn.system("sdcv -e " .. words)
     end
