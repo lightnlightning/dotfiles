@@ -57,6 +57,7 @@ is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
             bind-key -T copy-mode-vi 'C-l' select-pane -R
             bind-key -T copy-mode-vi 'C-\' select-pane -l
 
+
 #window navigation
 # display
 set -g base-index 1

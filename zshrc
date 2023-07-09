@@ -74,6 +74,7 @@ ZSH_THEME="apple"
 plugins=(
     git
     zsh-syntax-highlighting
+    # zsh-vi-mode
 )
 source $ZSH/oh-my-zsh.sh
 # User configuration
