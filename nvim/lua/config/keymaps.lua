@@ -58,8 +58,6 @@ noremap <silent> <leader>w *:set hlsearch<cr>
 
 nnoremap <expr><leader>r Sh()
 
-nnoremap <expr><leader>r Sh()
-
 function! Sh()
     let wordUnderCursor =  expand("<cword>")
     set hlsearch
