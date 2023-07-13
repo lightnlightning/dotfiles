@@ -28,13 +28,11 @@ vim.opt.hlsearch = false  -- do not highlight matches
 vim.opt.ignorecase = true -- ignore case in searches by default
 vim.opt.smartcase = true  -- but make it case sensitive if an uppercase is entered
 
-
 -- 外观
 -- vim.opt.termguicolors = true
 -- vim.opt.signcolumn = "yes"
 
 -- 插件
-
 -- colorscheme
 -- vim.cmd[[colorscheme tokyonight]]
 
