@@ -1,7 +1,7 @@
 -- vim.opt.termguicolors = true
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+-- vim.opt.termguicolors = true
 return {
     'akinsho/bufferline.nvim', version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
