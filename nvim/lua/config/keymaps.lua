@@ -59,10 +59,10 @@ noremap <silent> <leader>w *:set hlsearch<cr>
 nnoremap <expr><leader>r Sh()
 
 function! Sh()
-    let wordUnderCursor =  expand("<cword>")
-    set hlsearch
-    " return ":%s/" .. wordUnderCursor .. "/"
-    return ":%s/" .. wordUnderCursor
+let wordUnderCursor =  expand("<cword>")
+set hlsearch
+" return ":%s/" .. wordUnderCursor .. "/"
+return ":%s/" .. wordUnderCursor
 
 endfunc
 ]])

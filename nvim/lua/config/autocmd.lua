@@ -19,7 +19,7 @@ vnoremap <tab> zf
 " " autocmd BufWinEnter,FileType c,lua,javascript,css,solidtiy,python,html silent loadview
 " augroup end
 
-"从启动画面进来自动打开树
+" 自动打开树
 augroup _open_nvim_tree
 autocmd! * <buffer>
 autocmd sessionloadpost * NeoTreeReveal
