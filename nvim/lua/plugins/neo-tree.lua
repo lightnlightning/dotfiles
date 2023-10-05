@@ -7,9 +7,9 @@ return {
         "MunifTanjim/nui.nvim",
     },
     keys = {
-        { "<F3>",      "<cmd>Neotree toggle<cr>", desc = "打开/关闭树" },
+        { "<F3>", "<cmd>Neotree toggle<cr>", desc = "打开/关闭树" },
         -- { "<space>", "v", desc = "替换v键盘", remap = true },
-        { "<leader>e", "<cmd>NeoTreeReveal<cr>",  desc = "打开/关闭树" },
+        { "<leader>e", "<cmd>NeoTreeReveal<cr>", desc = "打开/关闭树" },
     },
     config = function()
         -- unless you are still migrating, remove the deprecated commands from v1.x
