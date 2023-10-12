@@ -4,9 +4,9 @@ local on_attach = function(_, bufnr)
 
     local signs = {
         { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn",  text = "" },
-        { name = "DiagnosticSignHint",  text = "" },
-        { name = "DiagnosticSignInfo",  text = "" },
+        { name = "DiagnosticSignWarn", text = "" },
+        { name = "DiagnosticSignHint", text = "" },
+        { name = "DiagnosticSignInfo", text = "" },
     }
 
     for _, sign in ipairs(signs) do
@@ -62,6 +62,7 @@ local servers = { 'lua_ls', 'pyright', 'tsserver', 'cssls', 'emmet_ls', 'clangd'
     'solidity_ls',
     'solidity_ls_nomicfoundation',
     'solang',
+    -- 'rome',
     -- 'solc',
     'solidity',
     -- 'solc'

@@ -26,6 +26,13 @@ autocmd sessionloadpost * NeoTreeReveal
 augroup end
 
 ]]
+-- 将文件设置为jsonc，才能显示注释
+vim.cmd([[
+augroup jsoncFtdetect
+    autocmd!
+    autocmd BufNewFile,BufRead *.json set filetype=jsonc
+augroup END]])
+
 -- Don't auto commenting new lines
 -- 不要回车自动加注释
 vim.api.nvim_create_autocmd("BufEnter", {
