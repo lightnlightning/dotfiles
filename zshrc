@@ -109,3 +109,7 @@ export PATH="$PATH:/Users/eagle/.local/bin"
 
 # Created by `pipx` on 2022-11-07 05:38:36
 export PATH="$PATH:/Users/eagle/Library/Python/3.10/bin"
+. "/Users/eagle/.acme.sh/acme.sh.env"
+alias acme.sh=~/.acme.sh/acme.sh
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+alias ls="exa --icons"

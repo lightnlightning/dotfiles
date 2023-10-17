@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+set -g mouse on
+# 复制到系统剪贴板
+setw -g mode-keys vi
+set-option -g default-command "reattach-to-user-namespace -l ${SHELL}"
+# set-option -g default-command "reattach-to-user-namespace -l bash"
+bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe 'reattach-to-user-namespace pbcopy'
 set-option -g status-position top
 # TokyoNight colors for Tmux
 

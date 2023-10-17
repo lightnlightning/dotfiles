@@ -28,6 +28,7 @@ vim.keymap.set('i', '<C-l>', '<Right>', opts)
 -- noremap <silent> {Right-Mapping} :<C-U>TmuxNavigateRight<cr>
 -- noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
 
+vim.keymap.set('n', '<C-p>', '<Plug>MarkdownPreviewToggle', opts)
 -- Resize with arrows
 -- delta: 2 lines
 vim.keymap.set('n', '_', ':resize -2<CR>', opts)
