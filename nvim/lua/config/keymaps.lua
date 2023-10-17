@@ -95,6 +95,8 @@ map("v", "p", '"_dP', { silent = true })
 
 --格式化
 vim.keymap.set('n', '<leader>=', 'mwggvG=`w', opts)
+
+vim.keymap.set('v', 'v', 'vggVG', opts)
 -----------------
 -- 插件 --
 -----------------
