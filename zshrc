@@ -113,3 +113,9 @@ export PATH="$PATH:/Users/eagle/Library/Python/3.10/bin"
 alias acme.sh=~/.acme.sh/acme.sh
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 alias ls="exa --icons"
+
+test -e /Users/eagle/.iterm2_shell_integration.zsh && source /Users/eagle/.iterm2_shell_integration.zsh || true
+
+# tmux 弹窗
+# 退出 ranger 的时候，cd 到相应的目录
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'

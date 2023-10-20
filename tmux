@@ -106,12 +106,24 @@ bind '"' split-window -c "#{pane_current_path}"
 # Easy config reload
 bind-key r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded"
 
+# bind C-g display-popup -E "ta ~/git"
+# bind -n M-g display-popup -E "tmux new-session -A -s scratch"
+# ranger预览图片
+# set-option -g default-terminal "screen-256color"
+# set-option -ga terminal-overrides ",xterm-256color:Tc"
+# set-option -g status-right "#{prefix_highlight}#(w3mimgdisplay -c -x 0 -e -P '' '#{pane_tty} | #{ranger --choosedfile})" # reset color
 # 插件
 # # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-
-# Other examples:
+# Other examples# alt-3 弹出 popup
+bind-key -n M-g run-shell -b "\
+    if test 1 -eq #{==:#{session_name},popup} ; then \
+        tmux detach-client; \
+    else \
+        tmux popup -d \"#{pane_current_path}\" -xC -yC -w80% -h75% -E \"tmux attach -t popup || tmux new -s popup\"; \
+    fi\
+"
 # set -g @plugin 'github_username/plugin_name'
 # set -g @plugin 'github_username/plugin_name#branch'
 # set -g @plugin 'git@github.com:user/plugin'
