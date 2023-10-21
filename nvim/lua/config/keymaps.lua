@@ -40,6 +40,8 @@ vim.keymap.set('n', '>', ':vertical resize +2<CR>', opts)
 vim.keymap.set('n', 'q', ':BufferLineCyclePrev<CR>:bd #<CR>', opts)
 -- save
 vim.keymap.set('n', '<c-s>', ':w<CR>', opts)
+-- 刷新文件
+vim.keymap.set('n', 'R', ':e!<CR>', opts)
 -- 切换窗口
 vim.keymap.set('n', '<c-x>', '<c-w>x', opts)
 -- buffers
@@ -71,6 +73,7 @@ endfunc
 
 vim.keymap.set('v', 'u', '<esc>', opts)
 vim.keymap.set('n', '<c-q>', ':q<cr>', opts)
+vim.keymap.set('n', '<leader>q', ':qa<cr>', opts)
 vim.keymap.set({ 'n', 'v', 'o' }, 'H', '^', opts)
 vim.keymap.set({ 'n', 'v', 'o' }, 'L', '$', opts)
 
