@@ -1,14 +1,16 @@
 -- Setup language servers.
 local lspconfig = require('lspconfig')
-lspconfig.pyright.setup {}
+-- lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
 lspconfig.lua_ls.setup {}
 -- lspconfig.rome.setup {}
 -- lspconfig.rome.setup {}
 -- lspconfig.solc.setup {}
-require 'lspconfig'.html.setup {}
+require 'lspconfig'.html_lsp.setup {}
 require 'lspconfig'.solidity_ls.setup {}
 require 'lspconfig'.cssls.setup {}
+require 'lspconfig'.pyright.setup {}
+require 'lspconfig'.emmet_ls.setup {}
 -- require 'lspconfig'.prettier.setup {}
 
 -- Global mappings.

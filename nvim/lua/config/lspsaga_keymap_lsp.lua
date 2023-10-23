@@ -62,6 +62,7 @@ local servers = { 'lua_ls', 'pyright', 'tsserver', 'cssls', 'emmet_ls', 'clangd'
     'solidity_ls',
     'solidity_ls_nomicfoundation',
     'solang',
+    'html',
     -- 'rome',
     -- 'solc',
     'solidity',

@@ -34,15 +34,15 @@ function M.trans()
     local m = ""
     if M.opts.trans_opts == "onlive" then
         if string.byte(words, 2) > 127 then
-            m = vim.fn.system("trans -no-ansi :en " .. words)
+            m = vim.fn.system("trans -no-ansi -x 127.0.0.1:2088 :en " .. words)
         else
-            m = vim.fn.system("trans -no-ansi -b " .. words)
+            m = vim.fn.system("trans -no-ansi -b -x 127.0.0.1:2088 " .. words)
         end
     elseif M.opts.trans_opts == "sp" then
         if string.byte(words, 2) > 127 then
-            m = vim.fn.system("trans -no-ansi -sp -d :en " .. words)
+            m = vim.fn.system("trans -no-ansi -sp -d -x 127.0.0.1:2088 :en " .. words)
         else
-            m = vim.fn.system("trans -no-ansi -sp -b " .. words)
+            m = vim.fn.system("trans -no-ansi -sp -b -x 127.0.0.1:2088 " .. words)
         end
     else
         m = vim.fn.system("sdcv -e " .. words)
